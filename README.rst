@@ -1,6 +1,8 @@
 Python Twitter Search API
 =========================
 
+Originally cloned from search-tweets-python repository on [Github|https://github.com/twitterdev/search-tweets-python]
+
 This project serves as a wrapper for the `Twitter premium and enterprise
 search
 APIs <https://developer.twitter.com/en/products/tweets/search>`__,

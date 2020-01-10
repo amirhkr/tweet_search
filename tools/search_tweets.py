@@ -12,7 +12,8 @@ from searchtweets import (ResultStream,
                           merge_dicts,
                           read_config,
                           write_result_stream,
-                          gen_params_from_config)
+                          gen_params_from_config,
+                          gen_rule_payload)
 
 logger = logging.getLogger()
 # we want to leave this here and have it command-line configurable via the
@@ -34,13 +35,13 @@ def parse_cmd_args():
 
     argparser.add_argument("--credential-file",
                            dest="credential_file",
-                           default=None,
+                           default='twitter_keys.yaml',
                            help=("Location of the yaml file used to hold "
                                  "your credentials."))
 
     argparser.add_argument("--credential-file-key",
                            dest="credential_yaml_key",
-                           default=None,
+                           default='search_tweets_api',
                            help=("the key in the credential file used "
                                  "for this session's credentials. "
                                  "Defaults to search_tweets_api"))
@@ -54,12 +55,12 @@ def parse_cmd_args():
 
     argparser.add_argument("--config-file",
                            dest="config_filename",
-                           default=None,
+                           default='api_yaml_example.yaml',
                            help=help_msg)
 
     argparser.add_argument("--account-type",
                            dest="account_type",
-                           default=None,
+                           default='premium',
                            choices=["premium", "enterprise"],
                            help="The account type you are using")
 
@@ -188,6 +189,12 @@ def main():
     logger.debug(json.dumps(_filter_sensitive_args(stream_params), indent=4))
 
     rs = ResultStream(tweetify=False, **stream_params)
+
+    # rule = gen_rule_payload("beyonce", results_per_call=100)  # testing with a sandbox account
+    # rs = ResultStream(endpoint=stream_params['endpoint'],
+    #                   rule_payload=rule,
+    #                   max_results=50,
+    #                   max_pages=1)
 
     logger.debug(str(rs))
 

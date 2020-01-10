@@ -1,13 +1,13 @@
 search_rules:
-    from-date: 2017-06-01
-    to-date: 2017-09-01 01:01
-    pt-rule: kanye
+    from-date: 2018-06-01
+    to-date: 2019-06-29
+    pt-rule: (geneticdiscrimination OR genetictesting) place_country:AU lang:en
 
 search_params:
-    results-per-call: 500
-    max-results: 500
+    results-per-call: 10
+    max-results: 11
 
 output_params:
     save_file: True
-    filename_prefix: kanye
+    filename_prefix: Amir_
     results_per_file: 10000000
